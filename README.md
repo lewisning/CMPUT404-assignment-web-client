@@ -18,3 +18,11 @@ examples thus some of the code is Copyright © 2001-2013 Python
 Software Foundation; All Rights Reserved under the PSF license (GPL
 compatible) http://docs.python.org/2/library/socketserver.html
 
+References
+========================
+
+1. https://docs.python.org/3/library/urllib.parse.html
+2. https://reqbin.com/req/nfilsyk5/get-request-example
+3. https://uofa-cmput404.github.io/cmput404-slides/04-HTTP.html#/18
+4. https://github.com/GevinUA/CMPUT404-assignment-web-client/blob/master/httpclient.py
+5. https://uofa-cmput404.github.io/cmput404-slides/04-HTTP.html#/32
