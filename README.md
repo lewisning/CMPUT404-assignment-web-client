@@ -26,3 +26,4 @@ References
 3. https://uofa-cmput404.github.io/cmput404-slides/04-HTTP.html#/18
 4. https://github.com/GevinUA/CMPUT404-assignment-web-client/blob/master/httpclient.py
 5. https://uofa-cmput404.github.io/cmput404-slides/04-HTTP.html#/32
+6. https://reqbin.com/Article/HttpPost

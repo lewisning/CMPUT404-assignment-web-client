@@ -95,8 +95,12 @@ class HTTPClient(object):
         self.connect(host, port)
 
         # Send the HTTP Header to the server
-        message = 'GET ' + path + ' HTTP/1.1\r\nHost: ' + host + '\r\nAccept-Language: en-US,en;q=0.5\r\n' \
-                  'Connection: close\r\n\r\n'
+        if path == '':
+            message = f'GET / HTTP/1.1\r\nHost: {host}\r\nAccept-Language: en-US,en;q=0.5\r\n' \
+                      f'Connection: close\r\n\r\n '
+        else:
+            message = f'GET {path} HTTP/1.1\r\nHost: {host}\r\nAccept-Language: en-US,en;q=0.5\r\n' \
+                      f'Connection: close\r\n\r\n '
 
         self.sendall(message)
         received = self.recvall(self.socket)
@@ -106,7 +110,8 @@ class HTTPClient(object):
         header = self.get_headers(received)
         code = self.get_code(header)
         body = self.get_body(received)
-        print(code)
+        # print(message)
+        # print(received)
 
         return HTTPResponse(code, body)
 
@@ -122,11 +127,17 @@ class HTTPClient(object):
         self.connect(host, port)
 
         # Encoding the payload
-        payload = urlencode(args)
+        payload = None
+        if args is not None:
+            payload = urlencode(args)
 
         # Send the HTTP Header to the server
-        message = 'POST ' + path + ' HTTP/1.1\r\nHost: ' + host + '\r\nAccept-Language: en-US,en;q=0.5\r\n' \
-                  f'Content-Length: {len(payload)}' + 'Connection: close\r\n\r\n'
+        if payload is not None:
+            message = f'POST {path} HTTP/1.1\r\nHost: {host}\r\nAccept-Language: en-US,en;q=0.5\r\n' \
+                      f'Content-Length: {len(payload)}\r\nConnection: close\r\n\r\n{payload}\r\n\r\n'
+        else:
+            message = f'POST {path} HTTP/1.1\r\nHost: {host}\r\nAccept-Language: en-US,en;q=0.5\r\n' \
+                      f'Content-Length: 0\r\nConnection: close\r\n\r\n'
 
         self.sendall(message)
         received = self.recvall(self.socket)
